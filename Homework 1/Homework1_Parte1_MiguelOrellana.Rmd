@@ -1,0 +1,34 @@
+```{r} 
+#Miguel Antonio Orellana Ruíz
+#Cuenta EEP: 999009043
+#Registro académico: 201801279
+#CUI: 3054116160207
+
+#Se crea la matriz con la función runif(n,min,max), que la genera con números aleatorios. 
+Tarea1_matriz <- matrix(runif(25,160,200), byrow=FALSE, nrow = 5)
+
+#Se le asignan los meses de enero a mayo como nombre de cada columna
+meses <- c("Enero", "Febrero", "Marzo", "Abril", "Mayo") 
+colnames(Tarea1_matriz) <- meses
+
+#Se le asignan nombres de 5 personas como nombre de cada fila.
+nombres <- c("Miguel", "Antonio", "Yesica", "Aracely", "Leah")
+rownames(Tarea1_matriz) <- nombres
+Tarea1_matriz
+
+#Se construye un vector que contenga el peso promedio de cada persona durante los meses de enero a mayo, utilizando  la función rowMeans
+peso_prom_persona <- c(rowMeans(Tarea1_matriz))
+
+#Se agrega la el vector fila de peso promedio por persona durante los 5 meses
+matriz_1 <- cbind(Tarea1_matriz,peso_prom_persona)
+
+#Se construye un vector que contenga el peso promedio en cada mes para todas las personas, utilizando la función colMeans. 
+#IMPORTANTE, para que la matriz tenga las mismas dimensiones en filas y columnas, se agrega el promedio del peso de las personas durante los 5 meses. (Para que el vector tenga 6 columnas y se pueda agregar a la nueva matriz con 6 columnas)
+peso_prom_mes <- c(colMeans(Tarea1_matriz),mean(peso_prom_persona))
+
+
+#Se agrega la el vector fila de peso promedio por mes de todas las personas
+matriz_2 <- rbind(matriz_1,peso_prom_mes)
+
+
+```
