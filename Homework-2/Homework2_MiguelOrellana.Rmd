@@ -1,0 +1,301 @@
+
+Miguel Antonio Orellana Ruíz
+Cuenta EEP: 999009043
+Registro académico: 201801279
+CUI: 3054116160207
+
+--------------------- HOMEWORK 2 ---------------------
+
+
+--------------------- FUNCIONES EN R ---------------------
+
+a. Estructura de una función:  
+
+   * Nombre de la función: Es el nombre que se le asigna a la función.
+   
+   * function: Es la palabra reservada que indica que se está difiniendo una función.
+   
+   * Argumentos: Son variables de entrada que se utilizan dentro de la función para realizar operaciones. 
+     Los argumentos se especifican dentro de los paréntesis y pueden ser separados por comas si hay más de 
+     uno. Si la función no tiene argumentos, se dejan los paréntesis vacíos. 
+     
+   * Cuerpo de la función: Es el conjunto de instrucciones que se ejecutan para realizar la tarea deseada. 
+     El cuerpo de la función debe estrar dentro de llaves "{}".
+     
+   * Return: Es el comando que indica el resultado que devuelve la función después de realizar el procesamiento, 
+     el cual puede ser de cualquier tipo. 
+     
+     Ejemplo de la estructura:
+     
+```{r}
+     # nombre_funcion <- function(argumentos){
+     # cuerpo de la función
+     # Especifica lo que hace la función
+     # La función debe devolver un resultado usando el comando "return( )"
+     # }
+```
+
+
+b. Ejemplos de una función
+
+```{r}
+
+#Función que calcula el área de un circulo. 
+
+ area_circulo <- function(radio){
+   resultado <- pi * radio**2
+   if (radio >= 0){
+     return(resultado) 
+   } else {
+     return ("No existen radios negativos")
+   }
+ }
+
+area_circulo(7)
+```
+```{r}
+
+#Sumarle 2 a un número. 
+
+ suma <- function(num){
+   resultado <- num + 2
+     return(resultado) 
+   } 
+
+suma(3)
+```
+
+
+c. Argumentos de una función:
+   Los argumentos se definen dentro de los paréntesis, separados por comas. Cada argumento se compone de dos partes:
+   el nombre del argumento y su valor por defecto (opcional). El valor por defecto se utiliza cuando el usuario no 
+   proporciona un valor para ese argumento al llamar a la función.
+   
+   Tipos de argumentos en RStudio: 
+   * Argumentos obligatorios: Se necesitan para poder funcionar correctamente y no tienen
+     un valor por defecto.
+
+   * Argumentos opcionales: Tienen un valor por defecto, lo que significa que si el usuario no 
+     proporciona un valor para estos argumentos, se utliizará el valor por defecto. 
+     
+   * Argumentos de longitud variable: Son aquellos que permiten que la función acepte un número variable de 
+     argumentos. 
+     
+   * Argumentos con nombre: Se especifican utilizando el nombre del argumento al llamar a la función.
+     Sintaxis: "nombre_argumento = valor".
+   
+   * Argumentos sin nombre: Son aquellos que se especifican en el orden en que se definen en la función al 
+     llamar a la función.
+
+
+d. Argumentos por valor: 
+   Los argumentos por valor, se refieren a cómo se pasan los argumentos de una función a otra. Cuando se
+   pasan los argumentos por valor, se copia el valor de los argumentos y se pasa la copia a la función, en lugar de
+   pasar una referencia a los argumentos originales. 
+   Esto significa que cualquier cambio que se realice en los argumentos dentro de la función no afectará a los valores
+   de los argumentos fuera de la función.
+   
+   En RStudio, por defecto los argumentos se pasan por valor. Esto quiere decir que cuando se llama a una función
+   con un argumento, se copia el valor y se pasa la copia a la función. Por lo tanto, si se modifica el valor del
+   argumento dentro de la función, no se afectará el valor del argumento original. 
+   
+
+---------------- FAMILIA APPLY ----------------
+a. lapply 
+   Es una función en R que permite aplicar una función a cada elemento de una lista y devolver los resultados
+   en una lista del mismo tamaño que la lista original. 
+   
+   Ejemplo 1:
+   
+```{r}
+#Elevar al cuadrado los elementos de una lista. 
+
+#Creación de la lista
+lista <- list(4, 7, 9, 10)
+
+#Función que eleve al cuadrado un número "a"
+cuadrado <- function(a){ 
+  resultado <- a**2
+  return(resultado)
+}
+
+#Aplicar la función a cada elemento de la lista
+resultado_lista <- lapply(lista,cuadrado)
+
+#Imprimir los resultados
+resultado_lista
+```
+Ejemplo 2:
+
+```{r}
+#Sumarle 2 a los elementos de la lista. 
+
+#Creación de la lista
+lista <- list(4, 7, 9, 10)
+
+#Función que le suma 2 a un número "a"
+suma <- function(a){ 
+  resultado <- a+2
+  return(resultado)
+}
+
+#Aplicar la función a cada elemento de la lista
+resultado_lista <- lapply(lista,suma)
+
+#Imprimir los resultados
+resultado_lista
+```
+Ejemplo 3:
+
+```{r}
+#Multiplicar por 3 los elementos de la lista. 
+
+#Creación de la lista
+lista <- list(4, 7, 9, 10)
+
+#Función que le suma 2 a un número "a"
+producto <- function(a){ 
+  resultado <- 3*a
+  return(resultado)
+}
+
+#Aplicar la función a cada elemento de la lista
+resultado_lista <- lapply(lista, producto)
+
+#Imprimir los resultados
+resultado_lista
+```
+   
+
+b. sapply
+   Es una función en R Studio es muy útil para aplicar una función a cada elemento de un vector o lista y obtener   
+   un vector de salida con los resultados. En RStudio es similar a la función lapply, pero se utiliza para simplificar    los resultados en un vector o matriz.
+   
+   Ejemplo 1:
+```{r}
+#Elevar al cuadrado los elementos de un vector. 
+
+#Creación de un vector 
+vector <- c(4,7,9,10)
+
+#Función que eleve al cuadrado un número "a"
+cuadrado <- function(a){ 
+  resultado <- a**2
+  return(resultado)
+}
+
+#Aplicar la función para cada elemento del vector 
+resultado_vector <- sapply(vector,cuadrado)
+
+#Imprimir los resultados
+resultado_vector
+```
+ Ejemplo 2: 
+ 
+```{r}
+#Sumarle 2 a los elementos de un vector. 
+
+#Creación de un vector 
+vector <- c(4,7,9,10)
+
+#Función que le suma 2 a un número "a"
+suma <- function(a){ 
+  resultado <- a + 2
+  return(resultado)
+}
+
+#Aplicar la función para cada elemento del vector 
+resultado_vector <- sapply(vector,suma)
+
+#Imprimir los resultados
+resultado_vector
+```
+ Ejemplo 3:
+```{r}
+#Multiplicar por 3 los elementos de una lista. 
+
+#Creación de un vector 
+vector <- c(4,7,9,10)
+
+#Función que multiplica por 3 un número "a"
+producto <- function(a){ 
+  resultado <- 3 * a
+  return(resultado)
+}
+
+#Aplicar la función para cada elemento del vector 
+resultado_vector <- sapply(vector,producto)
+
+#Imprimir los resultados
+resultado_vector
+```
+ 
+
+c. vapply 
+   La función vapply es similar a la función sapply, con la diferencia que se utiliza cuando se desea
+   especificar el tipo de retorno de la función aplicada y proporcionar un valor predeterminado si el 
+   tipo de retorno es diferente.  
+   
+   Estructura: 
+```{r}
+ # vapply (vector, función, FUN.VALUE)
+```
+   
+   
+   Ejemplo 1: 
+```{r}
+#Elevar al cuadrado los elementos de un vector. 
+
+#Creación de un vector 
+vector <- c(4,7,9,10)
+
+#Función que eleve al cuadrado un número "a"
+cuadrado <- function(a){ 
+  resultado <- a**2
+  return(resultado)
+}
+
+#Aplicar la función para cada elemento del vector 
+resultado_vector <- vapply(vector,cuadrado,FUN.VALUE = double(1))
+
+#Imprimir los resultados
+resultado_vector
+```
+Ejemplo 2: 
+```{r}
+#Sumarle 2 a los elementos de un vector. 
+
+#Creación de un vector 
+vector <- c(4,7,9,10)
+
+#Función que le suma 2 a un número "a"
+suma <- function(a){ 
+  resultado <- a + 2
+  return(resultado)
+}
+
+#Aplicar la función para cada elemento del vector 
+resultado_vector <- vapply(vector,suma,FUN.VALUE = double(1))
+
+#Imprimir los resultados
+resultado_vector
+```
+Ejemplo 3: 
+```{r}
+#Multiplicar por 3 los elementos de una lista. 
+
+#Creación de un vector 
+vector <- c(4,7,9,10)
+
+#Función que multiplica por 3 un número "a"
+producto <- function(a){ 
+  resultado <- 3 * a
+  return(resultado)
+}
+
+#Aplicar la función para cada elemento del vector 
+resultado_vector <- vapply(vector,producto,FUN.VALUE = double(1))
+
+#Imprimir los resultados
+resultado_vector
+```
