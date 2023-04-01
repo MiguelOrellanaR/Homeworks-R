@@ -11,12 +11,16 @@ CUI: 3054116160207
   
   1. Crear un Script o abrir uno existente. 
   
-  2. Utilizar el comando 'setwd()' para establecer la ruta de trabajo donde se encuentra el archivo CSV. Por ejemplo, si el                   archivo CSV se encuentra en el escritorio, se puede utilizar el siguiente comando 'setwd("~/Desktop"). 
+  2. Utilizar el comando 'setwd()' para establecer la ruta de trabajo donde se encuentra el archivo CSV. 
+     Por ejemplo, si el archivo CSV se encuentra en el escritorio, se puede utilizar el siguiente comando 'setwd("~/Desktop"). 
      Si el archivo de R está en al misma carpeta del CSV, no se especifica la ruta. 
      
-  3. Utilizar la función 'read.csv()' para leer el archivo CSV en un data frame. Por ejemplo, si el archivo CSV se llama 'datos.csv', se      puede utilizar el siguiente comando.'datos <- read.csv("datos.csv").
+  3. Utilizar la función 'read.csv()' para leer el archivo CSV en un data frame. Por ejemplo, si el archivo CSV se llama 'datos.csv', se
+     puede utilizar el siguiente comando.'datos <- read.csv("datos.csv").
   
-Es importante asegurarse de que el archivo CSV se encuentre en el directorio de trabajo especificado en RStudio para que la función 'read.csv()' pueda leerlo correctamente. Si el archivo CSV se encuentra en un directorio diferente, asegúrate de especificar la ruta completa del archivo en el comando 'setwd()'.
+Es importante asegurarse de que el archivo CSV se encuentre en el directorio de trabajo especificado en RStudio para que la función
+'read.csv()' pueda leerlo correctamente. Si el archivo CSV se encuentra en un directorio diferente, asegúrate de especificar la ruta
+completa del archivo en el comando 'setwd()'.
 
 
 ** Función select() de la paquetería de dplyr.
