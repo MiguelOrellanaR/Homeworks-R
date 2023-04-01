@@ -25,7 +25,8 @@ completa del archivo en el comando 'setwd()'.
 
 ** Función select() de la paquetería de dplyr.
 
-  La función 'select()' de la paquetería de dplyr es una función que se utiliza para seleccionar columnas de un data frame en R. La        sintaxis básica de la función es la siguiente: 
+  La función 'select()' de la paquetería de dplyr es una función que se utiliza para seleccionar columnas de un data frame en R. 
+  La sintaxis básica de la función es la siguiente: 
   
   select(data_frame, columnas_a_seleccionar)
   
