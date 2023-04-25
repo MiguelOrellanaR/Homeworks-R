@@ -1,0 +1,101 @@
+Miguel Antonio Orellana Ruíz
+Cuenta EEP: 999009043
+Registro académico: 201801279
+CUI: 3054116160207
+
+--------------------- HOMEWORK 5 ---------------------
+
+Cargue cada set de datos y nombrelo según cada archivo.
+
+```{r}
+library(tidyverse)
+library(dplyr)
+
+tags <- read_csv('tags.csv')
+question_tags <- read_csv('question_tags.csv')
+questions <- read_csv('questions.csv')
+answers <- read_csv('answers.csv')
+```
+
+1. Left-joining questions and tags
+
+```{r}
+#1.4 Almacene el resultado en la variable questions_with_tags
+questions_with_tags <- questions %>%
+
+#1.1 Relacione questions y question_tags usando las columnas id y question_id, respectivamente.
+  left_join (question_tags, by = c("id" = "question_id")) %>% 
+
+#1.2 Agregue una relación más para la tabla tags
+  left_join (tags, by = c("tag_id" = "id")) %>% 
+
+#1.3 Utilice replace_na para cambiar los NA en la columna tag_name a "only-r".
+  replace_na(list(tag_name = "only-r"))
+
+
+#Mostrando el resultado
+questions_with_tags
+```
+
+2. Comparing scores across tags
+
+
+```{r}
+#2.1 Utilice questions_with_tags y aplique group_by para la variable tag_name
+questions_with_tags %>% 
+  group_by(tag_name) %>% 
+
+#2.2  Aplique summarize para obtener el score promedio de cada pregunta y asígnele el nombre mean_score.
+  summarize(mean_score = mean(score)) %>%
+
+#2.3  Ordene mean_score en forma descendente
+  arrange(desc(mean_score))
+```
+
+3. Finding gaps between questions and answers
+
+```{r}
+#3.1 Utilice inner_join para combinar las tablas questions y answers, luego aplique los sufijos 
+#"_question" y "_answer", respectivamente
+questions %>%
+  inner_join(answers, by = c("id" = "question_id"), suffix = c("_question","_answer")) %>%
+
+#3.2  Agregue una nueva columna utilizando la función mutate. La nueva columna se llamará gap y contendrá la resta de creation_date_answer y creation_date_question. (creation_date_answer - creation_date_question). 
+  mutate (gap = creation_date_answer - creation_date_question)
+```
+
+4. Joining question and answer counts
+
+```{r}
+#4.1  Cuente y ordene la columna question_id en la tabla de answers, luego almacene
+#el resultado en la variable answer_counts.
+  answer_counts <- answers %>%
+  count(question_id) %>%
+  arrange(question_id)
+
+#4.4 Almacene el resultado en la variable question_answer_counts.
+#4.2 Relacione la tabla questions con answer_counts (utilice left_join)
+  question_answer_counts <- left_join (questions, answer_counts, by = c("id" = "question_id")) %>%
+
+#4.3 Reemplace los valores NA en la columna n con ceros
+  mutate (n = replace_na(n, 0))
+
+# Mostrar resultado final
+  question_answer_counts
+
+
+```
+
+5. Joining questions, answers, and tags
+
+```{r}
+#5.1. Combine question_tags con question_answer_counts usando inner_join.
+question_tags %>%
+  inner_join (question_answer_counts, by = c("question_id" = "id")) %>% 
+
+#5.2. Ahora, use otro inner_join para agregar la tabla tags.
+  inner_join(tags, by = c("tag_id" = "id"))
+
+
+```
+
